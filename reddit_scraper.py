@@ -1,47 +1,89 @@
 import praw
-# import pandas as pd
 import csv
 from csv import writer
+import logging
+from datetime import datetime, timedelta
 
 reddit = praw.Reddit(client_id='89t0Tjzp4YkOenLbtGjJpw', 
                      client_secret='MBLF8lTJgLhBHIlq1v2sa9HHVw69eg', 
                      user_agent='Testing_API')
+    
 
-with open('reddit_hot_posts.csv', 'a') as f:
-    w = writer(f)
-    hot_posts = reddit.subreddit('all').hot(limit=10)
-    for post in hot_posts:
+filename = 'reddit_hot_posts.csv'
+LIMIT = 5000
+
+posts = {}
+with open(filename) as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    for post in csv_reader:
+        posts[post[0]] = post
+
+if "post_id" in posts:        
+    del posts["post_id"]
+
+print(f'Loaded {len(posts)} posts from file {filename}')
+error = 0
+
+for post in reddit.subreddit('all').hot(limit=LIMIT):
+    try:
+        time_in_mins = round((datetime.utcnow() - datetime.fromtimestamp(post.created)).seconds/60)
         row = [
-            post.author.comment_karma,
-            post.author.created_utc,
-            post.author.is_gold,
-            post.author.is_mod,
-            post.author.link_karma,
-            post.created_utc,
-            post.distinguished,
-            post.edited,
             post.id,
-            post.is_original_content,
-            post.is_self,
-            post.locked,
-            post.name,
+            post.author.comment_karma,
+            post.author.link_karma,# 3
+            time_in_mins,
+            post.is_original_content, # 6
+            post.name, # 9
             post.num_comments,
             post.over_18,
-            post.score,
-            post.selftext,
+            post.score, # 12
+            post.selftext is None, 
             post.spoiler,
             post.stickied,
+            post.subreddit.id,
+            post.subreddit.name,
             post.subreddit.subscribers,
             post.title,
             post.upvote_ratio,
             post.url,
         ]
-        w.writerow(row)
-        print(row)
-    w.close()
+        if post.id in posts:
+            print(f'Updating {post.id}:{post.title} post.')
+        else:
+            print(f'Found new post {post.id}:{post.title}.')
+        posts[post.id] = row
+    except Exception:
+        # Skiping post with incorrect data.
+        error += 1
+#         logging.exception("Error reading row", post)
 
-# posts_df = pd.DataFrame(posts,columns=['title', 'score', 'id', 'subreddit', 'url', 'num_comments', 'body', 'created', 'distinguished'])
-# print(posts_df)
+print(f'Posts with error {error}')
 
-# write to csv
+header = [
+    "post_id",
+    "author_comment_karma",
+    "author_link_karma",
+    "time_in_mins",
+    "post_is_original_content",
+    "post_name",
+    "post_num_comments",
+    "post_over_18",
+    "post_score",
+    "post_has_link", 
+    "post_spoiler",
+    "post_stickied",
+    "subreddit_id",
+    "subreddit_name",
+    "subreddit_subscriber_count",
+    "post_title",
+    "post_upvote_ratio",
+    "post_url",
+]
+with open(filename, 'w') as f:
+    w = writer(f)
+    w.writerow(header)
+    for post in posts.values():
+        w.writerow(post)
+
+print(f'Saved {len(posts)} posts into file {filename}')        
 
