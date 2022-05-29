@@ -1,7 +1,6 @@
 import praw
 import csv
-from csv import writer
-import logging
+from csv import writer, reader
 from datetime import datetime, timedelta
 
 reddit = praw.Reddit(client_id='89t0Tjzp4YkOenLbtGjJpw', 
@@ -10,61 +9,60 @@ reddit = praw.Reddit(client_id='89t0Tjzp4YkOenLbtGjJpw',
     
 
 filename = 'reddit_hot_posts.csv'
-LIMIT = 1000
+LIMIT = 2000
 
 def load_posts(from_file):
-    posts = {}
+    '''
+    this method loads all the csv content/lines from the file provided 
+    and saves it into a dictionary with key as first column and value the entire row.
+    '''
+    result = {}
     with open(from_file) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
+        csv_reader = reader(csv_file, delimiter=',')
         for post in csv_reader:
-            posts[post[0]] = post
+            result[post[0]] = post
 
-        if "post_id" in posts:        
-            del posts["post_id"]
-    return posts        
+        # if header in the dictionary, remove it
+        if "post_id" in result:        
+            del result["post_id"]
+    return result        
 
 posts = load_posts(filename)
 print(f'Loaded {len(posts)} posts from file {filename}')
 error = 0
 
-with open(filename + '.dump', 'w') as f:
-    w = writer(f)
-    hot_posts = reddit.subreddit('all').hot(limit=LIMIT)
-    for post in hot_posts:
-        try:
-            time_in_mins = round((datetime.utcnow() - datetime.fromtimestamp(post.created)).seconds/60)
-            row = [
-                post.id,
-                post.author.comment_karma,
-                post.author.link_karma,# 3
-                time_in_mins,
-                post.is_original_content, # 6
-                post.name, # 9
-                post.num_comments,
-                post.over_18,
-                post.score, # 12
-                post.selftext is None, 
-                post.spoiler,
-                post.stickied,
-                post.subreddit.id,
-                post.subreddit.name,
-                post.subreddit.subscribers,
-                post.title,
-                post.upvote_ratio,
-                post.url,
-            ]
-            if post.id in posts:
-                print(f'Updating {post.id}:{post.title} post.')
-            else:
-                print(f'Found new post {post.id}:{post.title}.')
-            posts[post.id] = row
-            w.writerow(row)
-        except Exception:
-            # Skiping post with incorrect data.
-            error += 1
-    #         logging.exception("Error reading row", post)
-    
-        
+hot_posts = reddit.subreddit('all').hot(limit=LIMIT)
+for post in hot_posts:
+    try:
+        time_in_mins = round((datetime.utcnow() - datetime.fromtimestamp(post.created)).seconds/60)
+        row = [
+            post.id,
+            post.author.comment_karma,
+            post.author.link_karma,
+            time_in_mins,
+            post.is_original_content, 
+            post.name, 
+            post.num_comments,
+            post.over_18,
+            post.score, 
+            post.selftext is None, 
+            post.spoiler,
+            post.stickied,
+            post.subreddit.id,
+            post.subreddit.name,
+            post.subreddit.subscribers,
+            post.title,
+            post.upvote_ratio,
+            post.url,
+        ]
+        if post.id in posts:
+            print(f'Updating {post.id}:{post.title} post.')
+        else:
+            print(f'Found new post {post.id}:{post.title}.')
+        posts[post.id] = row            
+    except Exception:
+        # Skiping post with incorrect data.
+        error += 1
 
 print(f'Posts with error {error}')
 
@@ -95,5 +93,4 @@ with open(filename, 'w') as f:
     for post in posts.values():
         w.writerow(post)
 
-print(f'Saved {len(posts)} posts into file {filename}')        
-
+print(f'Saved {len(posts)} posts into file {filename}')
