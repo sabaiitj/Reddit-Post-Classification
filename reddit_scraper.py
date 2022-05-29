@@ -9,7 +9,7 @@ reddit = praw.Reddit(client_id='89t0Tjzp4YkOenLbtGjJpw',
                      user_agent='Testing_API')
     
 
-filename = 'reddit_hot_posts1.csv'
+filename = 'reddit_hot_posts.csv'
 LIMIT = 1000
 
 def load_posts(from_file):
@@ -88,7 +88,7 @@ header = [
     "post_upvote_ratio",
     "post_url",
 ]
-posts = load_posts(filename + '.dump')
+
 with open(filename, 'w') as f:
     w = writer(f)
     w.writerow(header)
