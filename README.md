@@ -94,9 +94,12 @@ b) Data
    
 c) README.md
    
-d) requirements.txt
    
-e) .gitignore
+d) .gitignore
+
+e) various images
+
+f) pdf of presentation
    
 ---
 
