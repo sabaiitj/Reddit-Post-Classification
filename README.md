@@ -2,7 +2,7 @@
 
 ### Executive Summary 
 
-In this project, I am investigating the performance of different classification methods on reddit posts scraped using PRAW. I preprocessed the data using natural language processing techniques such as stopword removal, lemmatization, stemming,TF-IDF weighting,test for feature selection.I tried various classification algorithms and found that an Ensemble Classifier performed the best on our dataset followed by a RandomForestClassifier.  The best accuracy is 79% with bagging classifier which is an ensemble classification method.
+In this project, I am investigating the performance of different classification methods on reddit posts scraped using PRAW. I preprocessed the data using natural language processing techniques such as stopword removal, lemmatization, stemming,TF-IDF weighting for feature selection.I tried various classification algorithms and found that an Ensemble Classifier performed the best on our dataset followed by a RandomForestClassifier.  The best accuracy is 79% with bagging classifier which is an ensemble classification method.
 
 
 ---
@@ -92,6 +92,7 @@ b) Data
    4. **Subreddit_dummies_with_Tfidf.csv**- Data with dummies for subreddits and Tfidf() used on post titles
    5. **reddit_hot_posts_sample.csv**-Sample before running script full on reddit
    
+   
 c) README.md
    
    
@@ -158,11 +159,13 @@ The most important features according to the `RandomForestClassifier` for Tfidfv
 
 - My recommendations based on the analysis for a new post-
 
-    1. Post in a subreddit with high subscriber count.
-    2. The author's karma(link and comment) matters!(Eternal truth)
+    1. Post in a subreddit with high subscriber count.Tag as many high value subreddits as possible.
+    2. The author's karma(link and comment) matters!(Eternal truth). The company should employ an author 
+       with high karma
     3. Have a decent title length
     4. Politics, games, funny,mademesmile,antiwork etc are popular topics. Tag them in your post.
-    5. Ask family, friends,co-workers and acquaintances to upvote your post. Try upvoting using bots??
+    5. Ask family, friends,co-workers and acquaintances to upvote your post. Try upvoting using bots if
+       you want.
 
 ---
 
