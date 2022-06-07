@@ -97,9 +97,7 @@ c) README.md
    
 d) .gitignore
 
-e) various images
-
-f) pdf of presentation
+e) pdf of presentation
    
 ---
 
@@ -119,42 +117,28 @@ Models are run on two set of datasets-one where I used Countvectorizer() on post
 ### Results
 
 The most frequently occurring sub-reddits are shown in the following graph:
-<br>
 
-   <img src=" Top_10_occurring_Subreddits.png" width="400">
-
-
-</br>
+![Top_10_occurring_Subreddits.png](Top_10_occurring_Subreddits.png)
 
 The most common words found by countvectorization are as shown below
-<br>
 
-   <img src="Most_common_words_found_by_countvectorization.png " width="400">
+![Most_common_words_found_by_countvectorization.png](Most_common_words_found_by_countvectorization.png)
 
-
-</br>
 The most common words found by tfidfvectorization are as shown below
-<br>
 
-   <img src=" Most_common_words_found_by_Tfidf_vectorization.png" width="400">
-
-
-</br>
+![Most_common_words_found_by_Tfidf_vectorization.png](Most_common_words_found_by_Tfidf_vectorization.png)
+   
 These words are not same among the two vectorization methods.
 
 The most important features according to the `RandomForestClassifier` for Countvectorization are shown in the graph below:
-<br>
+![RandomForestCvecFeatures.png](RandomForestCvecFeatures.png)
 
-   <img src="RandomForestCvecFeatures.png" width="400">
-
-
-</br>
-
+   
 The most important features according to the `RandomForestClassifier` for Tfidfvectorization are shown in the graph below:
 
 <br>
 
-   <img src="RandomForestTfidFeatures.png" width="400">
+   <img src="RandomForestTfidfFeatures.png" width="400">
 
 
 </br>
