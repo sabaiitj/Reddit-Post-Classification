@@ -55,7 +55,7 @@ After getting the data, I will build a classification model that, using Natural 
 
 1. I'll be utilizing a dataset derived from live web data: [Reddit.com](https://www.reddit.com/)
 
-2. To get the data, Iwill use the praw,csv and datetime library 
+2. To get the data, I will use praw,csv and datetime library 
 
 ---
 
