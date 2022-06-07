@@ -135,22 +135,16 @@ The most important features according to the `RandomForestClassifier` for Countv
 
    
 The most important features according to the `RandomForestClassifier` for Tfidfvectorization are shown in the graph below:
-
-<br>
-
-   <img src="RandomForestTfidfFeatures.png" width="400">
-
-
-</br>
+![RandomForestTfidfFeatures.png](RandomForestTfidfFeatures.png)
 
 
 ---
 
 ### Conclusion and Recommendations
 
-- Bagging is giving the best score on the dataset followed by Random Forest Classifier with gridsearch and Decision Tree.
+- Bagging is giving the best score on the dataset followed closely by Random Forest Classifier, Logistic regression and Decision Tree.
 
-- KNeighbors classifier with gridsearch is too burdensome for my system. The complexity of algorithms therefore should be considered into account while dealing with huge datasets.
+- KNeighbors classifier with gridsearch is too burdensome for my system. The complexity of algorithms therefore should be considered into account while dealing with huge datasets. Use of GPUs for ML recommended.
 
 - KNeighbors classifier(without gridsearch) is giving best result at k=5.
 
@@ -164,11 +158,11 @@ The most important features according to the `RandomForestClassifier` for Tfidfv
 
 - My recommendations based on the analysis for a new post-
 
-1. Post in a subreddit with high subscriber count.
-2. The author's karma(link and comment) matters!(Eternal truth)
-3. Have a decent title length
-4. Politics, games, funny,mademesmile,antiwork etc are popular topics. Tag them in your post.
-5. Ask family, friends,co-workers and acquaintances to upvote your post. Try upvoting using bots??
+    1. Post in a subreddit with high subscriber count.
+    2. The author's karma(link and comment) matters!(Eternal truth)
+    3. Have a decent title length
+    4. Politics, games, funny,mademesmile,antiwork etc are popular topics. Tag them in your post.
+    5. Ask family, friends,co-workers and acquaintances to upvote your post. Try upvoting using bots??
 
 ---
 
