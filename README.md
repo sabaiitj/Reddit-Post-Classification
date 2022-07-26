@@ -132,10 +132,12 @@ The most common words found by tfidfvectorization are as shown below
 These words are not same among the two vectorization methods.
 
 The most important features according to the `RandomForestClassifier` for Countvectorization are shown in the graph below:
+
 ![RandomForestCvecFeatures.png](RandomForestCvecFeatures.png)
 
    
 The most important features according to the `RandomForestClassifier` for Tfidfvectorization are shown in the graph below:
+
 ![RandomForestTfidfFeatures.png](RandomForestTfidfFeatures.png)
 
 
