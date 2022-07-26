@@ -3,8 +3,8 @@ import csv
 from csv import writer, reader
 from datetime import datetime, timedelta
 
-reddit = praw.Reddit(client_id= cid, 
-                     client_secret= csecret, 
+reddit = praw.Reddit(client_id= cid, #add client id
+                     client_secret= csecret, #add client secret key
                      user_agent='Testing_API')
     
 
