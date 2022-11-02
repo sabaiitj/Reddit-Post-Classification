@@ -121,25 +121,23 @@ The most frequently occurring sub-reddits are shown in the following graph:
 
 ![](./assets/Top_10_occurring_Subreddits.png)
 
-The most common words found by countvectorization are as shown below
+The most common words found by countvectorization are as shown below:
 
-! [Most_common_words_found_by_countvectorization.png](Most_common_words_found_by_countvectorization.png)
+![](./assets/Most_common_words_found_by_countvectorization.png)
 
-The most common words found by tfidfvectorization are as shown below
+The most common words found by tfidfvectorization are as shown below:
 
-! [Most_common_words_found_by_Tfidf_vectorization.png](Most_common_words_found_by_Tfidf_vectorization.png)
+![](./assets/Most_common_words_found_by_Tfidf_vectorization.png)
    
 These words are not same among the two vectorization methods.
 
 The most important features according to the `RandomForestClassifier` for Countvectorization are shown in the graph below:
 
-! [RandomForestCvecFeatures.png](RandomForestCvecFeatures.png)
-
+![](./assets/RandomForestCvecFeatures.png)
    
 The most important features according to the `RandomForestClassifier` for Tfidfvectorization are shown in the graph below:
 
-! [RandomForestTfidfFeatures.png](RandomForestTfidfFeatures.png)
-
+![](./assets/RandomForestTfidfFeatures.png)
 
 ---
 
