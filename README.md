@@ -119,7 +119,7 @@ Models are run on two set of datasets-one where I used Countvectorizer() on post
 
 The most frequently occurring sub-reddits are shown in the following graph:
 
-! [Top_10_occurring_Subreddits.png](Top_10_occurring_Subreddits.png)
+![](./assets/Top_10_occurring_Subreddits.png)
 
 The most common words found by countvectorization are as shown below
 
